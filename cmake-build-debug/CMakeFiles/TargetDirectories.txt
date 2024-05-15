@@ -1,5 +1,5 @@
-C:/Users/geazy/CLionProjects/TradingSim/cmake-build-debug/CMakeFiles/TradingSim.dir
-C:/Users/geazy/CLionProjects/TradingSim/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/geazy/CLionProjects/TradingSim/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-C:/Users/geazy/CLionProjects/TradingSim/cmake-build-debug/CMakeFiles/TradingSim_autogen_timestamp_deps.dir
-C:/Users/geazy/CLionProjects/TradingSim/cmake-build-debug/CMakeFiles/TradingSim_autogen.dir
+/home/mitch/Projects/TradingSim/cmake-build-debug/CMakeFiles/TradingSim.dir
+/home/mitch/Projects/TradingSim/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/mitch/Projects/TradingSim/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/mitch/Projects/TradingSim/cmake-build-debug/CMakeFiles/TradingSim_autogen_timestamp_deps.dir
+/home/mitch/Projects/TradingSim/cmake-build-debug/CMakeFiles/TradingSim_autogen.dir
