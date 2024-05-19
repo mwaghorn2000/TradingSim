@@ -46,6 +46,14 @@ add_executable(TradingSim main.cpp
         lib/qcustomplot/qcustomplot.h
         frontend/StockChart.cpp
         frontend/StockChart.h
+        backend/Wallet.cpp
+        backend/Wallet.h
+        backend/Transaction.cpp
+        backend/Transaction.h
+        backend/GameController.cpp
+        backend/GameController.h
+        backend/Company.cpp
+        backend/Company.h
 )
 target_link_libraries(TradingSim
         Qt6::Core
