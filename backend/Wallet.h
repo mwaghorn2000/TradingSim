@@ -16,7 +16,7 @@ public:
 
     void add_money(double amount);
 
-    int remove_money(double amount);
+    void remove_money(double amount);
 
     [[nodiscard]] double get_money() const;
 };

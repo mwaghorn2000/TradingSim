@@ -5,14 +5,24 @@
 #ifndef BUYBUTTON_H
 #define BUYBUTTON_H
 #include <QPushButton>
-
+#include "../backend/User.h"
 #include "ButtonInterface.h"
+#include "MainBoard.h"
 
+class MainBoard;
 
-class BuyButton : public QPushButton, public ButtonInterface{
+class BuyButton : public QPushButton {
+    Q_OBJECT
+
 public:
-    BuyButton(QWidget *parent = nullptr);
-    void onClick() override;
+    explicit BuyButton(User* user, MainBoard* mainBoard, QWidget *parent = nullptr);
+
+    private slots:
+        void onClick();
+
+private:
+    User* user;
+    MainBoard* mainBoard;
 };
 
 

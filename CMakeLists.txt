@@ -54,6 +54,8 @@ add_executable(TradingSim main.cpp
         backend/GameController.h
         backend/Company.cpp
         backend/Company.h
+        backend/Stock.cpp
+        backend/Stock.h
 )
 target_link_libraries(TradingSim
         Qt6::Core

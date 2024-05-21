@@ -21,9 +21,10 @@ public:
     explicit User(int id);
     [[nodiscard]] int get_id() const;
     void add_money(double amount) const;
-    [[nodiscard]] int remove_money(double amount) const;
+    void remove_money(double amount) const;
     std::list<Transaction> get_transactions();
     void addTransation(double bought_price);
+    void removeTransaction();
     std::optional<Transaction>  get_transation(int id);
     [[nodiscard]] Wallet get_wallet() const;
 };

@@ -19,14 +19,6 @@ void Wallet::add_money(const double amount) {
     this->money += amount;
 }
 
-int Wallet::remove_money(const double amount) {
-    if (amount <= 0) {
-        return 1;
-    }
-    if (this->money - amount < 0) {
-        return 1;
-    }
-
+void Wallet::remove_money(const double amount) {
     this->money -= amount;
-    return 0;
 }
