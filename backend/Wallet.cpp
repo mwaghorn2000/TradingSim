@@ -5,7 +5,7 @@
 #include "Wallet.h"
 
 Wallet::Wallet() {
-    this->money = 1000.00;
+    this->money = 0;
 }
 
 double Wallet::get_money() const {

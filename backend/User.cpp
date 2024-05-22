@@ -32,7 +32,7 @@ std::list<Transaction> User::get_transactions() {
     return new_transactions;
 }
 
-void User::addTransation(double const bought_price) {
+void User::addTransaction(double const bought_price) {
     std::cout << "Adding transaction with price: " << bought_price << std::endl;
     int const id = transactions.size() + 1;
     auto t = Transaction(id, bought_price);
@@ -49,7 +49,7 @@ void User::removeTransaction() {
     std::cout << "Transaction not performed because you have no stocks" << std::endl;
 }
 
-std::optional<Transaction> User::get_transation(int id) {
+std::optional<Transaction> User::get_transaction(int id) {
     auto it = this->transactions.find(id);
     if (it != this->transactions.end()) {
         return it->second;
@@ -60,6 +60,14 @@ std::optional<Transaction> User::get_transation(int id) {
 
 Wallet User::get_wallet() const {
     return this->wallet;
+}
+
+void User::updatePrice(double price) {
+    for (const auto& t : this->get_transactions()) {
+        if (t.is_active()) {
+            this->add_money(price);
+        }
+    }
 }
 
 

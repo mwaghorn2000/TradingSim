@@ -18,7 +18,7 @@ StockChart::StockChart(QWidget *parent) : QCustomPlot(parent), minY(100), maxY(1
 
 void StockChart::addPoint(double price) {
     static int time = 0;
-    std::cout << "Adding point to graph: time=" << time << ", price=" << price << std::endl;
+    //std::cout << "Adding point to graph: time=" << time << ", price=" << price << std::endl;
     this->graph(0)->addData(time, price);
     time++;
 

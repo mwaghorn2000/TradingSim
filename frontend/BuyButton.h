@@ -8,14 +8,14 @@
 #include "../backend/User.h"
 #include "ButtonInterface.h"
 #include "MainBoard.h"
+#include "../backend/GameController.h"
 
 class MainBoard;
 
 class BuyButton : public QPushButton {
     Q_OBJECT
-
 public:
-    explicit BuyButton(User* user, MainBoard* mainBoard, QWidget *parent = nullptr);
+    explicit BuyButton(User* user, MainBoard* mainBoard, GameController* gameController, QWidget *parent = nullptr);
 
     private slots:
         void onClick();
@@ -23,8 +23,7 @@ public:
 private:
     User* user;
     MainBoard* mainBoard;
+    GameController* gameController;
 };
-
-
 
 #endif //BUYBUTTON_H

@@ -11,16 +11,7 @@ set(CMAKE_AUTOUIC ON)
 cmake_minimum_required(VERSION 3.28)
 project(TradingSim)
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
-set(CMAKE_AUTOUIC ON)
-
-if(DEFINED ENV{QT_DIR})
-    set(CMAKE_PREFIX_PATH $ENV{QT_DIR})
-else ()
-    set(CMAKE_PREFIX_PATH "/home/mitch/Qt/6.7.0/gcc_64/lib/cmake")
-endif ()
+set(CMAKE_PREFIX_PATH "/Users/mitchellwaghorn/Qt/6.7.0/macos/lib/cmake")
 
 find_package(Qt6 COMPONENTS
         Core
@@ -42,10 +33,6 @@ add_executable(TradingSim main.cpp
         frontend/MainBoard.cpp
         backend/User.cpp
         backend/User.h
-        lib/qcustomplot/qcustomplot.cpp
-        lib/qcustomplot/qcustomplot.h
-        frontend/StockChart.cpp
-        frontend/StockChart.h
         backend/Wallet.cpp
         backend/Wallet.h
         backend/Transaction.cpp
@@ -56,6 +43,14 @@ add_executable(TradingSim main.cpp
         backend/Company.h
         backend/Stock.cpp
         backend/Stock.h
+        backend/StockObserver.cpp
+        backend/StockObserver.h
+        backend/StockSubscriber.cpp
+        backend/StockSubscriber.h
+        lib/qcustomplot/qcustomplot.cpp
+        lib/qcustomplot/qcustomplot.h
+        frontend/StockChart.cpp
+        frontend/StockChart.h
 )
 target_link_libraries(TradingSim
         Qt6::Core

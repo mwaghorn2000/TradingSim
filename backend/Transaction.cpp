@@ -24,6 +24,15 @@ double Transaction::get_sold_price() const {
 void Transaction::set_sold_price(double const sold_price) {
     this->sold_price = sold_price;
     this->close_time = time(nullptr);
+    this->active = false;
+}
+
+bool Transaction::is_active() const {
+    return this->active;
+}
+
+int Transaction::get_id() const {
+    return this->id;
 }
 
 

@@ -10,7 +10,7 @@
 #include "BuyButton.h"
 #include "StockChart.h"
 
-MainBoard::MainBoard(QWidget *parent) : QWidget(parent), stockChart(nullptr), user(new User(1)) {
+MainBoard::MainBoard(QWidget *parent) : QWidget(parent), stockChart(nullptr), user(new User(1)), gc(user) {
     // Central widget and layout
     QWidget *centralWidget = new QWidget(this);
     this->setStyleSheet("background-color: #121212");
@@ -31,7 +31,7 @@ MainBoard::MainBoard(QWidget *parent) : QWidget(parent), stockChart(nullptr), us
     QVBoxLayout *rightLayout = new QVBoxLayout(rightWidget);
 
     // Create Wallet label
-    QLabel *walletLabel = new QLabel("Wallet", rightWidget);
+    this->walletLabel = new QLabel("Wallet", rightWidget);
     walletLabel->setAlignment(Qt::AlignCenter);
     walletLabel->setStyleSheet("background-color: green; color: white; font-size: 16px");
 
@@ -41,7 +41,7 @@ MainBoard::MainBoard(QWidget *parent) : QWidget(parent), stockChart(nullptr), us
     listPlaceholder->insertItem(0, "Item 2");
 
     // Create Buy and Sell buttons
-    BuyButton *buyButton = new BuyButton(user, this);
+    BuyButton *buyButton = new BuyButton(user, this, &gc);
     SellButton *sellButton = new SellButton(user, this);
 
     buyButton->setMinimumSize(100, 50);
@@ -67,6 +67,8 @@ MainBoard::MainBoard(QWidget *parent) : QWidget(parent), stockChart(nullptr), us
     Company company("company_id", stock);
     companies["company_id"] = company;
 
+    gc.addCompany(&company);
+
     std::cout << "MainBoard initialized" << std::endl;
 
     this->setLayout(mainLayout);
@@ -74,11 +76,11 @@ MainBoard::MainBoard(QWidget *parent) : QWidget(parent), stockChart(nullptr), us
 }
 
 void MainBoard::onTick() {
-    std::cout << "Tick event" << std::endl;
+    //std::cout << "Tick event" << std::endl;
 
     auto it = companies.find("company_id");
     if (it == companies.end()) {
-        std::cerr << "Company not found!" << std::endl;
+        //std::cerr << "Company not found!" << std::endl;
         return;
     }
 
@@ -89,10 +91,12 @@ void MainBoard::onTick() {
     if (stockChart != nullptr) {
         stockChart->addPoint(newPrice);
     } else {
-        std::cerr << "stockChart is null!" << std::endl;
+        //std::cerr << "stockChart is null!" << std::endl;
     }
 
-    std::cout << "New stock price: " << newPrice << std::endl;
+    // update the label for wallet each tick.
+    this->walletLabel->setText("Wallet: " + QString::number(this->user->get_wallet().get_money()));
+    //std::cout << "New stock price: " << newPrice << std::endl;
 }
 
 double MainBoard::getCurrentStockPrice() const {
@@ -103,4 +107,8 @@ double MainBoard::getCurrentStockPrice() const {
         std::cerr << "Company not found!" << std::endl;
         return 0.0; // Or some default error value
     }
+}
+
+GameController MainBoard::getGameController() {
+    return this->gc;
 }

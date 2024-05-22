@@ -1,4 +1,4 @@
-#include "Stock.h"
+#include "./Stock.h"
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
@@ -31,9 +31,9 @@ void Stock::initializeNewPhase() {
 
     tickPriceChange = tickPriceChange / remainingTicks;
 
-    std::cout << "New phase initialized: " << (goingDown ? "downward" : "upward")
-              << " for " << remainingTicks << " ticks, "
-              << "total change: " << percentageChange * 100 << "%" << std::endl;
+//    std::cout << "New phase initialized: " << (goingDown ? "downward" : "upward")
+//              << " for " << remainingTicks << " ticks, "
+//              << "total change: " << percentageChange * 100 << "%" << std::endl;
 }
 
 void Stock::updatePrice() {
@@ -49,12 +49,26 @@ void Stock::updatePrice() {
     if (currentPrice < 0) {
         currentPrice = 0;
     }
-
+    notifyObservers(adjustedTickPriceChange);
     remainingTicks--;
-    std::cout << "Stock price updated to: " << currentPrice
-              << ", remaining ticks: " << remainingTicks << std::endl;
+    //std::cout << "Stock price updated to: " << currentPrice
+    //          << ", remaining ticks: " << remainingTicks << std::endl;
 }
 
 double Stock::getCurrentPrice() const {
     return currentPrice;
+}
+
+void Stock::registerObserver(StockObserver *observer) {
+    this->observers.push_back(observer);
+}
+
+void Stock::removeObserver(StockObserver *observer) {
+    this->observers.remove(observer);
+}
+
+void Stock::notifyObservers(double priceChange) {
+    for (auto x : observers) {
+        x->updatePrice(priceChange);
+    }
 }

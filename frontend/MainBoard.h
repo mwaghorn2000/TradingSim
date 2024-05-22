@@ -5,7 +5,7 @@
 #ifndef MAINBOARD_H
 #define MAINBOARD_H
 #include "StockChart.h"
-
+#include "../backend/GameController.h"
 #include <QWidget>
 #include <QVBoxLayout>
 #include "BuyButton.h"
@@ -24,11 +24,13 @@ public:
         void onTick();
 public:
     double getCurrentStockPrice() const;
-
+    GameController getGameController();
 private:
+    QLabel* walletLabel;
     StockChart *stockChart;
     std::map<std::string, Company> companies;
     User *user;
+    GameController gc;
 };
 
 

@@ -9,9 +9,10 @@
 
 #include "Transaction.h"
 #include "Wallet.h"
+#include "Company.h"
+#include "StockObserver.h"
 
-
-class User {
+class User : public StockObserver {
 private:
     int id;
     Wallet wallet;
@@ -23,10 +24,11 @@ public:
     void add_money(double amount) const;
     void remove_money(double amount) const;
     std::list<Transaction> get_transactions();
-    void addTransation(double bought_price);
+    void addTransaction(double bought_price);
     void removeTransaction();
-    std::optional<Transaction>  get_transation(int id);
+    std::optional<Transaction> get_transaction(int id);
     [[nodiscard]] Wallet get_wallet() const;
+    void updatePrice(double price) override;
 };
 
 

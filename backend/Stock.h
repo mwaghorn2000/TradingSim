@@ -5,21 +5,27 @@
 #ifndef STOCK_H
 #define STOCK_H
 
+#include <list>
 
+#include "StockObserver.h"
+#include "StockSubscriber.h"
 
-class Stock {
+class Stock : public StockSubscriber {
 public:
     Stock();
     void updatePrice();
-    double getCurrentPrice() const;
+    [[nodiscard]] double getCurrentPrice() const;
+    void registerObserver(StockObserver* observer) override;
+    void removeObserver(StockObserver* observer) override;
+    void notifyObservers(double priceChange) override;
 
 private:
     double currentPrice;
     int remainingTicks;
     double tickPriceChange;
     bool goingDown;
-
     void initializeNewPhase();
+    std::list<StockObserver*> observers;
 };
 
 

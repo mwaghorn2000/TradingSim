@@ -16,3 +16,7 @@ Stock& Company::getStock() {
 const Stock& Company::getStock() const {
     return stock;
 }
+
+std::string Company::get_id() {
+    return this->id;
+}

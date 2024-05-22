@@ -6,23 +6,32 @@
 #define GAMECONTROLLER_H
 #include "User.h"
 #include "Company.h"
+#include <iostream>
+#include <utility>
 
 
 class GameController {
 private:
-    User user;
-    std::map<std::string, Company> companies;
+    User* user;
+    Company* company;
+    static const int MAX_STOCKS = 5;
 
 public:
-    GameController(const User& user) : user(user) {}
-    void addCompany(const std::string& id, const Company& company) {
-        companies[id] = company;
-    }
+     explicit GameController(User* user) : user(user) {}
+
     Company& getCompany(const std::string& id) {
-        return companies[id];
+        return *this->company;
     }
+
+    void addCompany(Company* company) {
+         this->company = company;
+     }
+
+    std::list<Transaction> get_active_transactions();
+
+    // returns 0 for successful purchase, 1 for failure
+    int purchase_stock();
+    int sell_stock(int id, double sold_price);
 };
-
-
 
 #endif //GAMECONTROLLER_H

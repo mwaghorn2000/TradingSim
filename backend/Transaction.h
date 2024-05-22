@@ -5,6 +5,7 @@
 #ifndef TRANSACTION_H
 #define TRANSACTION_H
 #include <qnamespace.h>
+#include "Company.h"
 
 
 class Transaction {
@@ -21,6 +22,8 @@ public:
     [[nodiscard]] double get_bought_price() const;
     void set_sold_price(double sold_price);
     [[nodiscard]] double get_sold_price() const;
+    [[nodiscard]] bool is_active() const;
+    [[nodiscard]] int get_id() const;
 };
 
 #endif //TRANSACTION_H

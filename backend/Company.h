@@ -16,7 +16,8 @@ public:
     Company() = default;
     Company(const std::string& id, const Stock& stock);
     Stock& getStock(); // Return non-const reference
-    const Stock& getStock() const; // Overload for const method
+    [[nodiscard]] const Stock& getStock() const; // Overload for const method
+    std::string get_id();
 };
 
 
